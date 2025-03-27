@@ -17,16 +17,15 @@ export default function AI() {
     e.preventDefault();
     if (!message.trim()) return;
 
-    // Add user message
     setChatHistory(prev => [...prev, { type: 'user', content: message }]);
     setIsLoading(true);
 
     const openai = new OpenAI({
-      apiKey: import.meta.env.VITE_OPENAI_API_KEY, 
+      apiKey: import.meta.env.VITE_OPENAI_API_KEY,
       dangerouslyAllowBrowser: true
     });
 
-      // Add user's message to chat
+    try {
       const userMessage = message;
       setMessage('');
 
@@ -45,8 +44,9 @@ export default function AI() {
         model: "gpt-3.5-turbo",
       });
 
-      const aiResponse = completion.choices[0]?.message?.content || "I apologize, but I couldn't process that response.";
-      
+      const aiResponse = completion.choices[0]?.message?.content || 
+                         "I apologize, but I couldn't process that response.";
+
       setChatHistory(prev => [...prev, { type: 'bot', content: aiResponse }]);
     } catch (error) {
       setChatHistory(prev => [...prev, {
