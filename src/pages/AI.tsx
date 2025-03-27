@@ -22,7 +22,7 @@ export default function AI() {
     setIsLoading(true);
 
     const openai = new OpenAI({
-      apiKey: process.env.REACT_APP_API_KEY, 
+      apiKey: import.meta.env.VITE_OPENAI_API_KEY, 
       dangerouslyAllowBrowser: true
     });
 
