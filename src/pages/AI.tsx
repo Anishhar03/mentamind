@@ -21,11 +21,10 @@ export default function AI() {
     setChatHistory(prev => [...prev, { type: 'user', content: message }]);
     setIsLoading(true);
 
-    try {
-      const openai = new OpenAI({
-        apiKey: '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', // This should be handled by your backend
-        dangerouslyAllowBrowser: true
-      });
+    const openai = new OpenAI({
+      apiKey: process.env.REACT_APP_API_KEY, 
+      dangerouslyAllowBrowser: true
+    });
 
       // Add user's message to chat
       const userMessage = message;
