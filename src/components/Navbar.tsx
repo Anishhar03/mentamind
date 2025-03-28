@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Brain, Menu, X, User, LogIn, LogOut } from 'lucide-react';
+import { Menu, X, User, LogIn, LogOut } from 'lucide-react';
 
 interface NavbarProps {
   isAuthenticated: boolean;
@@ -32,19 +32,30 @@ export default function Navbar({ isAuthenticated, user, onLogout }: NavbarProps)
     <nav className="fixed w-full bg-white shadow-sm z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          {/* Logo */}
+          {/* Logo with your image */}
           <motion.div 
             className="flex items-center"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <Link to="/" className="flex items-center">
-              <Brain className="h-8 w-8 text-blue-600" />
+              {/* Using your logo from public/photos */}
+              <img 
+                src="/photos/Menta Mind Final[1].png" 
+                alt="MentaMind Logo"
+                className="h-10 w-auto" // Adjust height as needed
+                onError={(e) => {
+                  // Fallback in case image fails to load
+                  const target = e.target as HTMLImageElement;
+                  target.onerror = null;
+                  target.src = '/photos/fallback-logo.png'; // Add a fallback image if needed
+                }}
+              />
               <span className="ml-2 text-xl font-bold text-gray-900">MentaMind</span>
             </Link>
           </motion.div>
           
-          {/* Mobile menu button */}
+          {/* Rest of the navbar code remains the same */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -55,7 +66,6 @@ export default function Navbar({ isAuthenticated, user, onLogout }: NavbarProps)
             </button>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <Link
@@ -76,7 +86,6 @@ export default function Navbar({ isAuthenticated, user, onLogout }: NavbarProps)
               </Link>
             ))}
 
-            {/* Auth Section */}
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
                 <div className="flex items-center text-gray-700">
@@ -108,7 +117,7 @@ export default function Navbar({ isAuthenticated, user, onLogout }: NavbarProps)
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu (same as before) */}
       <motion.div
         initial={{ height: 0, opacity: 0 }}
         animate={{ 
@@ -134,7 +143,6 @@ export default function Navbar({ isAuthenticated, user, onLogout }: NavbarProps)
             </Link>
           ))}
 
-          {/* Mobile Auth Section */}
           {isAuthenticated ? (
             <div className="pt-2 space-y-2">
               <div className="px-3 py-2 text-gray-700 flex items-center">
