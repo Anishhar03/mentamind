@@ -13,16 +13,16 @@ export default function AI() {
     }
   ]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!message.trim()) return;
 
-    setChatHistory(prev => [...prev, { type: 'user', content: message }]);
+    setChatHistory((prev) => [...prev, { type: 'user', content: message }]);
     setIsLoading(true);
 
     const openai = new OpenAI({
-      apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-      dangerouslyAllowBrowser: true
+      apiKey: import.meta.env.VITE_OPENAI_API_KEY, // Ensure API key is correctly set in .env
+      dangerouslyAllowBrowser: true // Security risk! Consider handling via backend.
     });
 
     try {
@@ -30,26 +30,27 @@ export default function AI() {
       setMessage('');
 
       const completion = await openai.chat.completions.create({
+        model: "ft:gpt-3.5-turbo-0125:menta:mentaa:BG7HuzDB", // Fixed model syntax
         messages: [
           {
             role: "system",
             content: "You are Menta, a compassionate mental health assistant. Provide supportive, empathetic responses while maintaining appropriate boundaries and encouraging professional help when needed."
           },
-          ...chatHistory.map(msg => ({
+          ...chatHistory.map((msg) => ({
             role: msg.type === 'user' ? 'user' : 'assistant',
             content: msg.content
           })),
           { role: "user", content: userMessage }
-        ],
-        model: "gpt-3.5-turbo",
+        ]
       });
 
-      const aiResponse = completion.choices[0]?.message?.content || 
+      const aiResponse = completion.choices?.[0]?.message?.content || 
                          "I apologize, but I couldn't process that response.";
 
-      setChatHistory(prev => [...prev, { type: 'bot', content: aiResponse }]);
+      setChatHistory((prev) => [...prev, { type: 'bot', content: aiResponse }]);
     } catch (error) {
-      setChatHistory(prev => [...prev, {
+      console.error("OpenAI Error:", error);
+      setChatHistory((prev) => [...prev, {
         type: 'bot',
         content: 'I apologize, but I encountered an error. Please try again later.'
       }]);

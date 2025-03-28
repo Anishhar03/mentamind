@@ -6,23 +6,23 @@ export default function Home() {
   const features = [
     {
       icon: <BookOpen className="w-6 h-6" />,
-      title: "Expert-Led Courses",
-      description: "Learn from industry professionals with years of experience"
+      title: "Psychologist Connect",
+      description: "Connect with certified psychologists at affordable prices"
     },
     {
       icon: <Brain className="w-6 h-6" />,
-      title: "Personalized Learning",
-      description: "Adaptive learning paths tailored to your needs"
+      title: "Safe and Secure Therapy Sessions",
+      description: "Engage in 100% Safe and Secure sessions with psychologists without worrying for data safety"
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Community Support",
-      description: "Join a thriving community of learners"
+      title: "24X7 AI Support",
+      description: "AI Support Available for you whenever you need"
     },
     {
       icon: <Trophy className="w-6 h-6" />,
-      title: "Certification",
-      description: "Earn recognized certificates upon completion"
+      title: "Guided Meditation and Wellness Programs",
+      description: "Upskill your life with Guided Meditation and Lifestyle Program. "
     }
   ];
 
@@ -51,7 +51,7 @@ export default function Home() {
                   whileTap={{ scale: 0.95 }}
                   className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors flex items-center"
                 >
-                  Start Learning
+                  Start exploring
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </motion.button>
                 <motion.button
@@ -59,7 +59,7 @@ export default function Home() {
                   whileTap={{ scale: 0.95 }}
                   className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-md hover:border-blue-600 hover:text-blue-600 transition-colors"
                 >
-                  View Courses
+                  View paid platform
                 </motion.button>
               </div>
             </motion.div>
@@ -91,7 +91,7 @@ export default function Home() {
           >
             <h2 className="text-3xl font-bold text-gray-900">Why Choose MentaMind?</h2>
             <p className="mt-4 text-lg text-gray-600">
-              We provide the tools and support you need to succeed in your learning journey
+              We provide the tools and support you need to succeed in your mental development journey
             </p>
           </motion.div>
 
@@ -129,15 +129,15 @@ export default function Home() {
           >
             <h2 className="text-3xl font-bold text-white">Ready to Start Your Journey?</h2>
             <p className="mt-4 text-lg text-blue-100">
-              Join thousands of learners who have already transformed their lives with MentaMind
+              Join thousands of customers who have already transformed their lives with MentaMind
             </p>
-            <motion.button
+            {/* <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="mt-8 bg-white text-blue-600 px-8 py-3 rounded-md hover:bg-blue-50 transition-colors"
             >
               Enroll Now
-            </motion.button>
+            </motion.button> */}
           </motion.div>
         </div>
       </section>
